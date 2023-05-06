@@ -2,21 +2,28 @@ import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
-        int year = 2025;
+        int year = 2023;
         int clientOS = 0;
         int clientDeviceYear = 2013;
-        int deliveryDistance = 19;
-        checkYear(year);
+        int deliveryDistance = 61;
+        boolean checkYearResult = checkYear(year);
+        yearResult(checkYearResult, year);
         checkDevice(clientOS, clientDeviceYear);
         int totalDaysDelivery = checkDistance(deliveryDistance);
         deliveryResult(totalDaysDelivery);
     }
-    public static void checkYear(int getYear) {
+    public static boolean checkYear(int getYear) {
         System.out.println("Задача 1");
-        if ((getYear % 4 == 0 && getYear % 100 != 0) || (getYear % 400 == 0)) {
-            System.out.println("Год " + getYear + " високосный год");
+        boolean checkYear;
+        checkYear = (getYear % 4 == 0 && getYear % 100 != 0) || (getYear % 400 == 0);
+        return checkYear;
+    }
+
+    public static void yearResult(boolean checkYearResult, int year) {
+        if (checkYearResult) {
+            System.out.println("Год " + year + " високосный год");
         } else {
-            System.out.println("Год " + getYear + " не високосный год");
+            System.out.println("Год " + year + " не високосный год");
         }
     }
 
@@ -42,9 +49,9 @@ public class Main {
         int checkDistance = 0;
         if (getDistance <=20) {
             checkDistance += 1;
-        } else if (getDistance > 20 && getDistance <= 60) {
+        } else if (getDistance <= 60) {
             checkDistance += 2;
-        } else if (getDistance > 60 && getDistance <= 100) {
+        } else if (getDistance <= 100) {
             checkDistance += 3;
         }
         return checkDistance;
